@@ -1,0 +1,15 @@
+*
+!*/
+!.gitignore
+!*.py
+!*.sh
+!*.ipynb
+!*.cpp
+!*.c
+!*.cc
+!README
+!README.MD
+!.git
+!.git/*
+!.ipynb_checkpoints
+!.ipynb_checkpoints/*
