@@ -2,6 +2,7 @@ from sklearn.base import BaseEstimator, RegressorMixin
 from sklearn.model_selection import GridSearchCV
 from sklearn.pipeline import Pipeline
 from sklearn.model_selection import KFold
+from qml.kernels import gaussian_kernel
 import numpy as np
 class KRR(BaseEstimator, RegressorMixin):
     
@@ -9,7 +10,7 @@ class KRR(BaseEstimator, RegressorMixin):
 
 
 
-    def __init__(self, kernel_func , sigma=None, lamb=None, kpca_ncmps=None, bst_mod = None):
+    def __init__(self, kernel_func = None, sigma=None, lamb=None, kpca_ncmps=None, bst_mod = None):
 
 
 
@@ -18,13 +19,11 @@ class KRR(BaseEstimator, RegressorMixin):
         sigma and lambda are optinal for initialization
         """
 
-        self.kernel_func  = kernel_func        # kernelfunction, no default
+        self.kernel_func  = kernel_func or gaussian_kernel       # kernelfunction, no default
         self.sigma        = sigma or 1.0       # sigma value, 1 default
         self.lamb         = lamb  or 1e-7      # lambda value, 1e-7 default
         self.kpca_ncmps   = kpca_ncmps or 2    # number of components for kpca, 2 default
-        self.bst_mod      = bst_mod or 0   
-        #self.Kernel_train = 0
-        
+        self.bst_mod      = bst_mod or 0           
         
         
         """
